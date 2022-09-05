@@ -16,7 +16,7 @@
      }*/
     ?>
 
-    <form action="" method="post" enctype="multipart/form-data">
+    <form id="regform" method="post">
         <h2>Register Form</h2>
     
         <input type="text" id="username" name="username" placeholder="Name">

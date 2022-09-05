@@ -7,6 +7,9 @@ class RegisterUser{
    private $confirm_password;
    private $raw_password; //голый пароль
 
+   public $response = array();
+
+
    private $encrypted_password; //захешированный пароль
    public $error;
    public $success;
@@ -27,45 +30,42 @@ class RegisterUser{
        "useremail" => $this->useremail,
        "password" => $this->encrypted_password,
     ];
-
-    if($this->checkFieldValues($password, $confirm_password)){
         $this->insertUser();
-     }
  }
 
- private function checkFieldValues($password, $confirm_password){
-    if($password!==$confirm_password){
-        $_SESSION['msgnotmatch'] = 'Passwords do not match';
-        //header('Location: index.php');
-        return false;
 
-    }
-    if(empty($this->username) || empty($this->raw_password)){
-        $this->error = "Both fields are required.";
-        return false;
-     }else{
-        return true;
-     }
- } // Checking for empty fields.
 
  private function usernameExists(){
     foreach ($this->stored_users as $user) {
-        if($this->userlogin == $user['userlogin'] || $this->useremail == $user['useremail']){
-           $this->error = "Username already taken, please choose a different one.";
-           return true;
-        }
-     }
+
+        if($this->userlogin == $user['userlogin']){
+         $this->$response['status'] = 'errorlogin';
+         $this->$response['message'] = "User with login $this->userlogin already exists";
+         return true;
+         }
+         
+         if($this->useremail == $user['useremail']){
+         $this->$response['status'] = 'erroremail';
+         $this->$response['message'] = "User with email $this->useremail already exists";
+         return true;}
+         }
+
  } // Checking if the username is taken.
 
  private function insertUser(){
     if($this->usernameExists() == FALSE){
         array_push($this->stored_users, $this->new_user);
         if(file_put_contents($this->storage, json_encode($this->stored_users))){
-           return $this->success = "Your registration was successful";
+         $this->$response['status'] = 'success';
+         echo json_encode($this->$response);
+            return true;
         }else{
-           return $this->error = "Something went wrong, please try again";
+           return false;
         }
+     } else{
+      echo json_encode($this->$response);
      }
+
  } // Insert the user in the JSON file.
 } 
 ?>
