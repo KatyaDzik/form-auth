@@ -16,7 +16,7 @@
      }*/
     ?>
 
-    <form id="regform" method="post">
+    <form  method="post">
         <h2>Register Form</h2>
     
         <input type="text" id="username" name="username" placeholder="Name">
@@ -39,8 +39,6 @@
         <button type="submit" id="sendUser" name="submit">Register</button>
 
         <p class="href">Already have an account? <a href="login.php">Sign in</a></p>
-        <p class="error"><?php echo @$user->error ?></p>
-        <p class="success"><?php echo @$user->success ?></p>
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="jscripts/registrForm.js"></script>

@@ -87,16 +87,6 @@ $("#sendUser").on("click", function(e){
                 document.getElementById("userpassword").value = "";
                 document.getElementById("userpassword2").value = "";
             }
-
-            
-           
-            /*if( data.status == 'errorlogin' ) {
-               console.log(data);
-               //$("#login_error").text(data.message);
-               return false;
-            } else {
-                // same as above but with success
-            }*/
         },
         error: function() {
             alert('There was some error performing the AJAX call!');

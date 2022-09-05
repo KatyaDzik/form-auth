@@ -1,6 +1,10 @@
 <?php
+ if(isset($_POST['userlogin'])){
+   $user = new LoginUser($_POST['userlogin'], $_POST['userpassword']);
+ }
+
 class LoginUser{
-   // class properties --------------------------------------
+
    private $userlogin;
    private $password;
    private $username;
@@ -8,8 +12,9 @@ class LoginUser{
    public $success;
    private $storage = "data.json";
    private $stored_users;
- 
-   // class methods -----------------------------------------
+   private $salt='qJB0rGtIn5UB1xG03efyCp';
+   public $response = array();
+   
    public function __construct($userlogin, $password){
       $this->userlogin= $userlogin;
       $this->password = $password;
@@ -20,14 +25,26 @@ class LoginUser{
    private function login(){
       foreach ($this->stored_users as $user) {
          if($user['userlogin'] == $this->userlogin){
-            if(password_verify($this->password, $user['password'])){
+            if(md5($this->salt.$this->password)== $user['password']){
+               $this->$response['status'] = 'success';
              $this->username=$user['username'];
-               // You can set a session and redirect the user to his account.
-               return  $this->success = "Hi $this->username, you are loged in";
+             echo json_encode($this->$response);
+             return true;
             }
+            else{
+               $this->$response['status'] = 'errorpass';
+               $this->$response['message'] = "Wrong password";
+               echo json_encode($this->$response);
+               return false;
+            }
+         } else{
+            $this->$response['status'] = 'errorlogin';
+            $this->$response['message'] = "User with login $this->userlogin do not exists";
+            echo json_encode($this->$response);
+            return false;
          }
+         
       }
-      return $this->error = "Wrong username or password";
    }
-} // end of class
+}
 ?>
