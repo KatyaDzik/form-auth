@@ -66,3 +66,16 @@ button[type="submit"]:hover
     font-weight: bold;
     text-align: center;
  }
+
+ .greetings{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;                         
+    left: 50%;                         
+    transform: translate(-50%, -60%);
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px 10px;
+    width: 30%;
+ }

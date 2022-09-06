@@ -1,4 +1,5 @@
 <?php
+session_start();
  if(isset($_POST['userlogin'])){
    $user = new LoginUser($_POST['userlogin'], $_POST['userpassword']);
  }
@@ -27,7 +28,9 @@ class LoginUser{
          if($user['userlogin'] == $this->userlogin){
             if(md5($this->salt.$this->password)== $user['password']){
                $this->$response['status'] = 'success';
-             $this->username=$user['username'];
+               $this->username=$user['username'];
+               $_SESSION['name']= $this->username;
+              // header('Location: profil.php');
              echo json_encode($this->$response);
              return true;
             }
@@ -37,12 +40,18 @@ class LoginUser{
                echo json_encode($this->$response);
                return false;
             }
-         } else{
+         } 
+
+         $this->$response['status'] = 'errorlogin';
+         $this->$response['message'] = "User with login $this->userlogin do not exists";
+         echo json_encode($this->$response);
+         return false;
+         /*else{
             $this->$response['status'] = 'errorlogin';
             $this->$response['message'] = "User with login $this->userlogin do not exists";
             echo json_encode($this->$response);
             return false;
-         }
+         }*/
          
       }
    }

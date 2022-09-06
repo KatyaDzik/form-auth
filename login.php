@@ -9,12 +9,16 @@
 </head>
 <body>
 <?php
-    
-   /* require("login_class.php");
-    if(isset($_POST['submit'])){
-       $user = new LoginUser($_POST['userlogin'], $_POST['userpassword']);
-    }*/
-?>
+     session_start();
+     if (isset($_SESSION['name'])) {
+         //header('index.php');
+         echo "<div class='greetings'>".
+         "<h1>"."Hello, ".$_SESSION['name']."</h1>".
+         "<a href='logout.php'>Log out</a>".
+         "</div>";
+         exit();
+     }
+    ?>
 
     <form method="post">
       <h2>Log in Form</h2>

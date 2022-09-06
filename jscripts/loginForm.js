@@ -31,6 +31,7 @@ $("#searchUser").on("click", function(e){
         data:{'userlogin': userlogin, 'userpassword': userpassword},
         dataType: 'html',
         success: function(data){
+            console.log(data);
             var obj = JSON.parse(data);
             if(obj.status=="errorlogin")
             {
@@ -43,6 +44,7 @@ $("#searchUser").on("click", function(e){
             }else if(obj.status=="success"){
                 document.getElementById("userlogin").value = "";
                 document.getElementById("userpassword").value = "";
+                location.reload() 
             }
         },
         error: function() {

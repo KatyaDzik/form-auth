@@ -9,11 +9,15 @@
 </head>
 <body>
     <?php
-    session_start();
-    require("register_class.php");
-    /*if(isset($_POST['submit'])){
-        $user = new RegisterUser($_POST['username'],$_POST['userlogin'],$_POST['useremail'], $_POST['userpassword'], $_POST['userpassword2']);
-     }*/
+     session_start();
+     if (isset($_SESSION['name'])) {
+         //header('index.php');
+         echo "<div class='greetings'>".
+         "<h1>"."Hello, ".$_SESSION['name']."</h1>".
+         "<a href='logout.php'>Log out</a>".
+         "</div>";
+         exit();
+     }
     ?>
 
     <form  method="post">

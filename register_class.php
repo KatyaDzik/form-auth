@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 class RegisterUser{
    private $username;
    private $userlogin;
