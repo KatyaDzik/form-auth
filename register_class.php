@@ -14,7 +14,7 @@ class RegisterUser{
    private $encrypted_password;
    public $error;
    public $success;
-   private $storage = "data.json"; 
+   private $storage = "db/data.json"; 
    private $stored_users; 
    private $new_user; 
    public function __construct($username, $userlogin, $useremail, $password, $confirm_password ){
