@@ -5,12 +5,14 @@ $("#sendUser").on("click", function(e){
     let useremail = $("#useremail").val().trim();
     let userpassword = $("#userpassword").val().trim();
     let userpassword2 = $("#userpassword2").val().trim();
-    $("sendUser").prop("disabled", true);
+    //$("sendUser").prop("disabled", true);
     if(username.length<2){
-        console.log("kkk");
         $("#name_error").text("Name must contain two or more characters");
         return false;
-    } else {
+    }else if(username.length>50) {
+        $("#name_error").text("Name must be less than 50 characters");
+        return false;
+    }else {
         $("#name_error").text("");
     }
 
@@ -21,11 +23,24 @@ $("#sendUser").on("click", function(e){
         $("#name_error").text("");
     }
 
+    if (/\s/.test(username)) {
+        $("#name_error").text("Name must not contain spaces");
+        return false;
+    } else {
+        $("#name_error").text("");
+    }
 
     if(userlogin.length<6){
         $("#login_error").text("Login must contain six or more characters");
         return false;
     }else{
+        $("#login_error").text("");
+    }
+
+    if (/\s/.test(userlogin)) {
+        $("#login_error").text("Login must not contain spaces");
+        return false;
+    } else {
         $("#login_error").text("");
     }
     
@@ -35,7 +50,6 @@ $("#sendUser").on("click", function(e){
     } else {
         $("#email_error").text("");
     }
-
 
     if(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu.test(useremail)==false){
         $("#email_error").text("Email isn\'t correct");
@@ -53,6 +67,13 @@ $("#sendUser").on("click", function(e){
         $("#password_error").text("Password must contain only numbers and letters");
         return false;
     }else{
+        $("#password_error").text("");
+    }
+
+    if (/\s/.test(userpassword)) {
+        $("#password_error").text("Password must not contain spaces");
+        return false;
+    } else {
         $("#password_error").text("");
     }
 
@@ -76,7 +97,7 @@ $("#sendUser").on("click", function(e){
             if(obj.status=="errorlogin")
             {
                 $("#login_error").text(obj.message);
-               return false;
+                return false;
             }else if(obj.status=="erroremail")
             {
                 $("#email_error").text(obj.message);
@@ -95,20 +116,3 @@ $("#sendUser").on("click", function(e){
 
     });
 })
-
-/*$("#onLoginForm").on("click", function(){
-    $.ajax({
-        url: 'login.php',
-        type: 'POST',
-        cache: false,
-        data:{},
-        dataType: 'html',
-        success: function(data){
-            console.log(data);
-        },
-        error: function() {
-            alert('There was some error performing the AJAX call!');
-          }
-
-    });
-})*/

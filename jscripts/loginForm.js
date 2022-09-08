@@ -31,12 +31,11 @@ $("#searchUser").on("click", function(e){
         data:{'userlogin': userlogin, 'userpassword': userpassword},
         dataType: 'html',
         success: function(data){
-            console.log(data);
             var obj = JSON.parse(data);
             if(obj.status=="errorlogin")
             {
                 $("#login_error").text(obj.message);
-               return false;
+                return false;
             }else if(obj.status=="errorpass")
             {
                 $("#password_error").text(obj.message);
@@ -52,7 +51,6 @@ $("#searchUser").on("click", function(e){
         error: function() {
             alert('There was some error performing the AJAX call!');
           }
-
     });
 })
 

@@ -7,7 +7,6 @@ $("#logout").on("click", function(){
         data: {},
         dataType: 'html',
         success: function(){
-           console.log('success');
            location.reload();
         },
         error: function() {

@@ -11,7 +11,6 @@
 <?php
      session_start();
      if (isset($_SESSION['name'])) {
-
          echo "<div class='greetings'>".
          "<h1>"."Hello, ".$_SESSION['name']."</h1>".
          "<button type='submit' id='logout' name='logout'>Log out</button>".
@@ -21,7 +20,7 @@
          exit();
      }
     ?>
-
+    
     <form method="post">
       <h2>Log in Form</h2>
       <input type="text" id="userlogin" name="userlogin" placeholder="Login">
