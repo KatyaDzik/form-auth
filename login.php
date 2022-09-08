@@ -20,8 +20,11 @@
          exit();
      }
     ?>
-    
-    <form method="post">
+    <noscript>
+      You cannot register without javascript enabled.
+    </noscript>
+
+    <form id="logForm" style="display: none" method="post">
       <h2>Log in Form</h2>
       <input type="text" id="userlogin" name="userlogin" placeholder="Login">
       <p id="login_error" class="msg_error"></p>
@@ -35,6 +38,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="jscripts/loginForm.js"></script>
     <script src="jscripts/logout.js"></script>
+    <script type="text/javascript">document.getElementById( 'logForm' ).style.display = 'flex';</script>
    </form>
 </body>
 </html>

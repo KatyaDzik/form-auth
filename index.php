@@ -21,7 +21,11 @@
      }
     ?>
 
-    <form  method="post">
+    <noscript>
+        You cannot register without javascript enabled.
+    </noscript>
+
+    <form id="regForm" style="display: none" method="post">
         <h2>Register Form</h2>
     
         <input type="text" id="username" name="username" placeholder="Name">
@@ -47,6 +51,7 @@
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="jscripts/registrForm.js"></script>
+    <script type="text/javascript">document.getElementById( 'regForm' ).style.display = 'flex';</script>
     <script src="jscripts/logout.js"></script>
 </body>
 </html>
