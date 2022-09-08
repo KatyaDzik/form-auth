@@ -11,10 +11,12 @@
 <?php
      session_start();
      if (isset($_SESSION['name'])) {
-         //header('index.php');
+
          echo "<div class='greetings'>".
          "<h1>"."Hello, ".$_SESSION['name']."</h1>".
-         "<a href='logout.php'>Log out</a>".
+         "<button type='submit' id='logout' name='logout'>Log out</button>".
+         "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+          <script src='jscripts/registrForm.js'></script><script src='jscripts/logout.js'></script>".
          "</div>";
          exit();
      }
@@ -31,9 +33,9 @@
       <button type="submit" id="searchUser" name="submit">Log in</button>
 
       <p class="href">Don't have an account? <a href="index.php">Sign up</a></p>
-
-   </form>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="jscripts/loginForm.js"></script>
+    <script src="jscripts/logout.js"></script>
+   </form>
 </body>
 </html>

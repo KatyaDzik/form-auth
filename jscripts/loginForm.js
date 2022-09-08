@@ -44,7 +44,7 @@ $("#searchUser").on("click", function(e){
             }else if(obj.status=="success"){
                 document.getElementById("userlogin").value = "";
                 document.getElementById("userpassword").value = "";
-                location.reload() 
+                location.reload();
             }else if(!data){
                 $("#login_error").text("User not found");
             }
@@ -55,3 +55,4 @@ $("#searchUser").on("click", function(e){
 
     });
 })
+

@@ -1,8 +1,25 @@
 <?php
 session_start();
- if(isset($_POST['userlogin'])){
+/*if(isset($_POST['userlogin'])){
    $user = new LoginUser($_POST['userlogin'], $_POST['userpassword']);
- }
+   exit();
+ }*/
+
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+   if(isset($_POST['userlogin'])){
+      $user = new LoginUser($_POST['userlogin'], $_POST['userpassword']);
+      exit();
+    }
+   if(!isset($_POST['userlogin'])){
+      unset($_SESSION['name']);
+      setcookie( "login", "", time()- 60, "/","", 0);
+      header('Location: login.php');
+      exit();
+   }
+   }
+   echo 'Это не ajax запрос!';
+   exit();
+
 
 class LoginUser{
 

@@ -65,12 +65,13 @@ $("#sendUser").on("click", function(e){
     }
 
     $.ajax({
-        url: 'h.php',
+        url: 'user_class.php',
         type: 'POST',
         cache: false,
         data:{'username': username, 'userlogin': userlogin, 'useremail': useremail, 'userpassword': userpassword, 'userpassword2': userpassword2},
         dataType: 'html',
         success: function(data){
+            console.log(data);
             var obj = JSON.parse(data);
             if(obj.status=="errorlogin")
             {
@@ -94,3 +95,20 @@ $("#sendUser").on("click", function(e){
 
     });
 })
+
+/*$("#onLoginForm").on("click", function(){
+    $.ajax({
+        url: 'login.php',
+        type: 'POST',
+        cache: false,
+        data:{},
+        dataType: 'html',
+        success: function(data){
+            console.log(data);
+        },
+        error: function() {
+            alert('There was some error performing the AJAX call!');
+          }
+
+    });
+})*/
